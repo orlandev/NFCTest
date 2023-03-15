@@ -1,0 +1,97 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.orlandev.nfctest'
+    compileSdk rootProject.targetSdk
+
+    defaultConfig {
+        minSdk rootProject.minSdk
+        targetSdk rootProject.targetSdk
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("../santa_ifigenia.jks")
+            storePassword "Inmersoft20xx"
+            keyAlias "inmersoft"
+            keyPassword "Inmersoft20xx"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility sourceCompatibility
+        targetCompatibility targetCompatibility
+    }
+    kotlinOptions {
+        jvmTarget = jvmTarget
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_compiler
+    }
+
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+dependencies {
+
+
+    implementation "androidx.core:core-ktx:$core_ktx"
+    implementation "androidx.appcompat:appcompat:$appcompat"
+
+    //LifeCycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_runtime"
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_runtime")
+    // ViewModel utilities for Compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_runtime")
+
+
+    //COMPOSE
+    implementation platform("androidx.compose:compose-bom:$compose_bom")
+    implementation "androidx.activity:activity-compose:$activity_compose"
+    implementation "androidx.compose.foundation:foundation"
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.ui:ui-tooling-preview"
+    implementation "androidx.compose.ui:ui-tooling"
+    implementation "androidx.compose.ui:ui-util"
+    implementation "androidx.compose.material:material"
+    implementation "androidx.compose.material3:material3"
+    implementation "androidx.compose.material3:material3-window-size-class"
+    implementation "androidx.compose.runtime:runtime"
+    implementation "androidx.compose.compiler:compiler:$compose_compiler"
+    implementation "androidx.compose.material:material-icons-core"
+    implementation "androidx.compose.material:material-icons-extended"
+    implementation "androidx.navigation:navigation-compose:2.5.3"
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+    implementation("androidx.paging:paging-compose:1.0.0-alpha18")
+
+
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test.ext:junit:$ext_junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
+
+
+}
